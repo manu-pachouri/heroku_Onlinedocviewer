@@ -16,7 +16,7 @@ def start():
 		password = request.form.get('password1')
 		message = create_user(email,password) 
 		if(message):
-			return render_template('user_page.html',message = "error during registration: "+message)
+			return render_template('invalid_register.html',message = "error during registration: " + message)
 	return render_template("register.html")
 
 @app.route('/onlinedocviewer/login/document_view',methods=['POST'])
@@ -39,7 +39,7 @@ def login_page():
 	return render_template('login.html')
 
 if __name__=="__main__":
-	app.run(debug = True,port = 33857)
+	app.run(debug = True,port = 5000)
 
 @app.errorhandler(404)
 def not_found():

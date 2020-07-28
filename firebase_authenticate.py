@@ -20,10 +20,8 @@ firebase = pyrebase.initialize_app(Config)
 def create_user(email,password):
 	try:
 		auth = firebase.auth()
-		db = firebase.database()
 		user = auth.create_user_with_email_and_password(email,password)
 		auth.send_email_verification(user['idToken'])
-
 	except requests.exceptions.HTTPError as httpErr:
 		error_message = json.loads(httpErr.args[1])['error']['message']
 		return error_message
@@ -46,9 +44,9 @@ def update(email):
 	# data = {"active":'Y',"email":email}
 	# db.child('users').push(data)
 	# db.child('users').child(email)
-	
 def main():
-	update('me.manu101@gmail.com')
+	update(email)
+	
 if __name__ == '__main__':
 	main()
 
