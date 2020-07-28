@@ -3,7 +3,6 @@ from flask_session import Session
 from firebase_authenticate import *
 
 app = Flask(__name__)
-app.debug = True
 
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -40,7 +39,7 @@ def login_page():
 	return render_template('login.html')
 
 if __name__=="__main__":
-	app.run()
+	app.run(debug = True,port = 33857)
 
 @app.errorhandler(404)
 def not_found():
