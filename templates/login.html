@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login Template</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href={{ url_for('static',filename='styles/login.css') }}>
+
+  <script type="text/javascript">
+    function Validate(form)
+{
+  var inputText = form["email"]
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(inputText.value.match(mailformat))
+{
+}
+else
+{
+alert("You have entered an invalid email address!");
+document.form.email.placeholder = "email can't be blank.";
+document.form.email.focus();
+return false;
+}
+ 
+                password1 = form.password1.value; 
+  
+  
+                // If password not entered 
+                if (password1 == '')
+        {
+                    alert ("Please enter Password"); 
+          document.form.password1.focus()
+          return false;
+    }
+        if (password1.length < 6)
+        {
+                    alert ("Please length should be greater than 6."); 
+          document.form.password1.focus()
+          return false;
+    	}
+                // If same return True. 
+              return true;
+            } 
+
+  if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+  </script>
+</head>
+<body>
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 login-section-wrapper">
+          <div class="login-wrapper my-auto">
+            <h1 class="login-title">LOGIN</h1>
+            <form method="POST" name = "form" action="{{ url_for('document_page') }}" onsubmit="return Validate(document.form)">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="email@example.com">
+              </div>
+              <div class="form-group mb-4">
+                <label for="password">Password</label>
+                <input type="password" name="password1" id="password1" class="form-control" placeholder="enter your passsword">
+              </div>
+              <input name="login" id="login" class="btn btn-block login-btn" type="submit" value="Login">
+            </form>
+            <p class="login-wrapper-footer-text">Not a user? <a href={{ url_for('start')}} class="text-reset">Register Now</a></p><br>
+          </div>
+        </div>
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+          <img src={{ url_for('static',filename='login.png') }} alt="login image" class="login-img">
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
